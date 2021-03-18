@@ -17,3 +17,28 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
+const firestore = firebase.firestore();
+
+const servers = {
+  iceServers:[
+    {
+      urls: ['stun:stun1.l.google.com:19302', 'stun:stun2.l.google.com:19302'],
+    },
+  ],
+  iceCandiadatePoolSize:10,
+};
+
+//global state
+let pc = new RTCPeerConnection(servers);
+//Your webcam 
+let localStream = null;
+//Recipient Webcam
+let remoteStream = null;
+
+const webcamButton = document.getElementById('webcamButton');
+const webcamvideo = document.getElementById('webcamvideo');
+const callButton = document.getElementById('callButton');
+const callInput = document.getElementById('callInput');
+const answerButton = document.getElementById('answerButton');
+const remoteVideo = document.getElementById('remoteVideo');
+const hangupButton = document.getElementById('hangupButton');
